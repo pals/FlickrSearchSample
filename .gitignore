@@ -17,8 +17,8 @@ bin/
 gen/
 build
 
-apatientally/.idea/workspace.xml
-apatientally/.idea/libraries
+FlickrSearchSample/.idea/workspace.xml
+FlickrSearchSample/.idea/libraries
 .DS_Store
 
 cd/gradlew.bat
@@ -27,9 +27,9 @@ cd/gradlew.bat
 google-play-services_lib/.settings
 google-play-services_lib/build
 
-apatientally/gen
-apatientally/.settings
-apatientally/build
+FlickrSearchSample/gen
+FlickrSearchSample/.settings
+FlickrSearchSample/build
 
 /.gradle
 /out
@@ -54,4 +54,21 @@ apatientally/build
 .classpath
 .project
 project.properties
+
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
 
