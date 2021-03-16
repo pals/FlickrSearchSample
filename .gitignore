@@ -1,0 +1,57 @@
+/.idea/inspectionProfiles
+/.idea/.name
+/.idea/gradle.xml
+/.idea/compiler.xml
+# built application files
+*.apk
+*.ap_
+
+# files for the dex VM
+*.dex
+
+# Java class files
+*.class
+
+# generated files
+bin/
+gen/
+build
+
+apatientally/.idea/workspace.xml
+apatientally/.idea/libraries
+.DS_Store
+
+cd/gradlew.bat
+/gradlew
+
+google-play-services_lib/.settings
+google-play-services_lib/build
+
+apatientally/gen
+apatientally/.settings
+apatientally/build
+
+/.gradle
+/out
+/gradle
+/.idea/vcs.xml
+
+/gradlew.bat
+*.iml
+
+/.idea/workspace.xml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/runConfigurations.xml
+/.idea/libraries
+/.idea/copyright
+/.idea/encodings.xml
+
+# Local configuration file (sdk path, etc)
+/local.properties
+
+# Eclipse project files
+.classpath
+.project
+project.properties
+
