@@ -33,7 +33,6 @@ FlickrSearchSample/build
 
 /.gradle
 /out
-/gradle
 /.idea/vcs.xml
 
 /gradlew.bat
