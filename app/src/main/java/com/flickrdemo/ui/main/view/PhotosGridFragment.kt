@@ -25,6 +25,7 @@ import com.flickrdemo.ui.main.viewmodel.RecentSearchViewModel
 import com.flickrdemo.ui.main.viewmodel.RecentSearchViewModelFactory
 import com.flickrdemo.ui.main.viewmodel.ViewModelFactory
 import com.flickrdemo.utils.NetworkUtil
+import com.flickrdemo.utils.ResponseHandler
 import com.flickrdemo.utils.Status
 
 
@@ -65,15 +66,20 @@ class PhotosGridFragment : Fragment(),
     private fun initViewModels() {
         val application = requireNotNull(this.activity).application
         val database = FlickrDemoDatabase.getInstance(application).recentSearchDatabaseDao
+        val responseHandler = ResponseHandler()
         recentSearchViewModel =
             ViewModelProviders.of(
                 requireActivity(),
-                RecentSearchViewModelFactory(ApiHelper(RetrofitBuilder.apiService), database)
+                RecentSearchViewModelFactory(
+                    ApiHelper(RetrofitBuilder.apiService),
+                    database,
+                    responseHandler
+                )
             ).get(RecentSearchViewModel::class.java)
 
         photosDataViewModel = ViewModelProviders.of(
             requireActivity(),
-            ViewModelFactory(ApiHelper(RetrofitBuilder.apiService), database)
+            ViewModelFactory(ApiHelper(RetrofitBuilder.apiService), database, responseHandler)
         ).get(PhotosDataViewModel::class.java)
 //        ViewModelProvider(this, viewModelFactory).get(RecentSearchViewModel::class.java)
 

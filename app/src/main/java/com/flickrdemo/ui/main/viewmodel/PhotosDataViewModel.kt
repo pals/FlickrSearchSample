@@ -24,15 +24,20 @@ class PhotosDataViewModel(private val repository: Repository) : ViewModel() {
         photoItems.value = photoItemsList
     }
 
-    fun getPhotosList(tags: String): LiveData<Resource<PhotosListResponse?>> {
+    fun getPhotosList(tags: String): LiveData<Resource<PhotosListResponse>> {
+//        return liveData(Dispatchers.IO) {
+//            emit(Resource.loading(data = null))
+//            try {
+//                emit(Resource.success(data = repository.getPhotosList(tags)))
+//            } catch (exception: Exception) {
+//                emit(Resource.error(data = null, msg = exception.message ?: "Error occurred!"))
+//            }
+//        }
         return liveData(Dispatchers.IO) {
             emit(Resource.loading(data = null))
-            try {
-                emit(Resource.success(data = repository.getPhotosList(tags)))
-            } catch (exception: Exception) {
-                emit(Resource.error(data = null, msg = exception.message ?: "Error occurred!"))
-            }
+            emit(repository.getPhotosList(tags))
         }
+
     }
 
     private var clickedItem: PhotoItem? = null

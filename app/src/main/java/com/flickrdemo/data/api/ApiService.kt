@@ -6,7 +6,7 @@ import retrofit2.http.Query
 
 
 interface ApiService {
-    @GET("services/feeds/photos_public.gne?nojsoncallback=1&tagmode=any&format=json")
+    @GET("servicesx/feeds/photos_public.gne?nojsoncallback=1&tagmode=any&format=json")
     suspend fun getPhotosList(
         @Query("tags") tags: String
     ): PhotosListResponse

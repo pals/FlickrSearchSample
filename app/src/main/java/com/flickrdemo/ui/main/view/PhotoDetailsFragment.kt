@@ -22,6 +22,7 @@ import com.flickrdemo.databinding.FragmentPhotoDetailsBinding
 import com.flickrdemo.ui.base.Constants
 import com.flickrdemo.ui.main.viewmodel.PhotosDataViewModel
 import com.flickrdemo.ui.main.viewmodel.ViewModelFactory
+import com.flickrdemo.utils.ResponseHandler
 
 
 class PhotoDetailsFragment : Fragment() {
@@ -37,9 +38,10 @@ class PhotoDetailsFragment : Fragment() {
 
         val application = requireActivity().application
         val database = FlickrDemoDatabase.getInstance(application).recentSearchDatabaseDao
+        val responseHandler = ResponseHandler()
         photosDataViewModel = ViewModelProviders.of(
             requireActivity(),
-            ViewModelFactory(ApiHelper(RetrofitBuilder.apiService), database)
+            ViewModelFactory(ApiHelper(RetrofitBuilder.apiService), database, responseHandler)
         ).get(PhotosDataViewModel::class.java)
     }
 
