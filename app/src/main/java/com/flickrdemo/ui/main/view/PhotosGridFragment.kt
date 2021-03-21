@@ -44,6 +44,7 @@ class PhotosGridFragment : Fragment(),
 
         (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.app_name)
         initViewModels()
+        setupNavigation()
 
     }
 
@@ -52,13 +53,12 @@ class PhotosGridFragment : Fragment(),
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentPhotosGridBinding.inflate(inflater, container, false)
-        binding!!.viewmodel = photosDataViewModel
-        val adapter = PhotoGridItemAdapter(this)
+        binding?.viewmodel = photosDataViewModel
+//        val view = binding?.viewmodel
+        val adapter = PhotoGridItemAdapter(photosDataViewModel)
         binding!!.photosGrid.adapter = adapter
 
         subscribeUi(adapter)
-
-
         return binding!!.root
 
     }
@@ -81,8 +81,6 @@ class PhotosGridFragment : Fragment(),
             requireActivity(),
             ViewModelFactory(ApiHelper(RetrofitBuilder.apiService), database, responseHandler)
         ).get(PhotosDataViewModel::class.java)
-//        ViewModelProvider(this, viewModelFactory).get(RecentSearchViewModel::class.java)
-
 
     }
 
@@ -159,9 +157,15 @@ class PhotosGridFragment : Fragment(),
         navigateToDetails(photoItem)
     }
 
+    private fun setupNavigation() {
+        photosDataViewModel.clickedItem.observe(this, Observer {
+            navigateToDetails(it)
+        })
+    }
+
     private fun navigateToDetails(photoItem: PhotoItem) {
 
-        photosDataViewModel.setClickedPhotoItem(photoItem)
+        Log.d(Constants.LOGGER_TAG, "PhotoItem: " + photoItem.title)
         Navigation.findNavController(binding?.photosGrid!!)
             .navigate(R.id.action_photosGridFragment_to_photoDetailsFragment)
 

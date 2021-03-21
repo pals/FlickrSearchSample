@@ -7,21 +7,16 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.flickrdemo.data.model.PhotoItem
 import com.flickrdemo.databinding.PhotoGridItemBinding
-import com.flickrdemo.ui.main.interfaces.PhotoGridItemListener
-import com.flickrdemo.ui.main.viewmodel.PhotosItemDataViewModel
+import com.flickrdemo.ui.main.viewmodel.PhotosDataViewModel
 
-class PhotoGridItemAdapter(var photoGridItemListener: PhotoGridItemListener) :
+class PhotoGridItemAdapter(private val viewModel: PhotosDataViewModel) :
     ListAdapter<PhotoItem, ViewHolder>(PhotoDiffCallback()) {
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
 
-        val photoItem: PhotoItem = getItem(position)
-        (holder as PhotoItemViewHolder).bind(
-            PhotosItemDataViewModel(
-                photoGridItemListener,
-                photoItem
-            )
-        )
+        val item = getItem(position)
+        (holder as PhotoItemViewHolder).bind(viewModel, item)
 
     }
 
@@ -35,15 +30,13 @@ class PhotoGridItemAdapter(var photoGridItemListener: PhotoGridItemListener) :
         private val binding: PhotoGridItemBinding
     ) : ViewHolder(binding.root) {
 
-        fun bind(viewModel: PhotosItemDataViewModel) {
+        fun bind(viewModel: PhotosDataViewModel, item: PhotoItem) {
             binding.apply {
                 binding.viewmodel = viewModel
-
-                executePendingBindings()
+                binding.photoItem = item
+                binding.executePendingBindings()
             }
         }
-
-
     }
 
 }

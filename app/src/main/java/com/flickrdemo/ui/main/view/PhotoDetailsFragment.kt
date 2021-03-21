@@ -52,7 +52,7 @@ class PhotoDetailsFragment : Fragment() {
     ): View? {
 
         binding = FragmentPhotoDetailsBinding.inflate(inflater, container, false)
-        photoItem = photosDataViewModel.getClickedPhotoItem()
+        photoItem = photosDataViewModel.clickedItem.value
         binding!!.viewmodel = photoItem
         setupUI(this)
         return binding!!.root

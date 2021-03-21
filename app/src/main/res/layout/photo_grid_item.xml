@@ -6,14 +6,18 @@
     <data>
 
         <variable
+            name="photoItem"
+            type="com.flickrdemo.data.model.PhotoItem" />
+
+        <variable
             name="viewmodel"
-            type="com.flickrdemo.ui.main.viewmodel.PhotosItemDataViewModel" />
+            type="com.flickrdemo.ui.main.viewmodel.PhotosDataViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{()->viewmodel.itemClicked()}"
+        android:onClick="@{()->viewmodel.setClickedPhotoItem(photoItem)}"
         android:padding="@dimen/dp_3">
 
 
@@ -26,7 +30,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:photoItemImageUsingGlide="@{viewmodel.photoImage}" />
+            app:setPhotoItemImageUsingGlide="@{photoItem.media.mediaLink}" />
 
         <TextView
             android:id="@+id/photo_item_title"
@@ -38,7 +42,7 @@
             android:gravity="center_horizontal"
             android:maxLines="2"
             android:minLines="2"
-            android:text="@{viewmodel.title}"
+            android:text="@{photoItem.title}"
             android:textAppearance="?attr/textAppearanceListItem"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

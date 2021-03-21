@@ -11,10 +11,13 @@
         <action
             android:id="@+id/action_photosGridFragment_to_photoDetailsFragment"
             app:destination="@id/photoDetailsFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/photoDetailsFragment"
         android:name="com.flickrdemo.ui.main.view.PhotoDetailsFragment"
         android:label="@string/photo_details_fragment_title"
-        tools:layout="@layout/fragment_photo_details" />
+        tools:layout="@layout/fragment_photo_details">
+
+    </fragment>
 </navigation>

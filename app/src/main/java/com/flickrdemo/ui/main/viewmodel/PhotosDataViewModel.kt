@@ -14,6 +14,10 @@ class PhotosDataViewModel(private val repository: Repository) : ViewModel() {
 
     private val photoItems: MutableLiveData<List<PhotoItem>> = MutableLiveData(arrayListOf())
 
+    private val _clickedPhotoItemPublishedVal = MutableLiveData<String>()
+    val clickedPhotoItemPublishedVal: LiveData<String> = _clickedPhotoItemPublishedVal
+
+
     fun getSearchedResults(): MutableLiveData<List<PhotoItem>> {
 
         return photoItems
@@ -25,14 +29,7 @@ class PhotosDataViewModel(private val repository: Repository) : ViewModel() {
     }
 
     fun getPhotosList(tags: String): LiveData<Resource<PhotosListResponse>> {
-//        return liveData(Dispatchers.IO) {
-//            emit(Resource.loading(data = null))
-//            try {
-//                emit(Resource.success(data = repository.getPhotosList(tags)))
-//            } catch (exception: Exception) {
-//                emit(Resource.error(data = null, msg = exception.message ?: "Error occurred!"))
-//            }
-//        }
+
         return liveData(Dispatchers.IO) {
             emit(Resource.loading(data = null))
             emit(repository.getPhotosList(tags))
@@ -40,14 +37,14 @@ class PhotosDataViewModel(private val repository: Repository) : ViewModel() {
 
     }
 
-    private var clickedItem: PhotoItem? = null
+    var clickedItem = MutableLiveData<PhotoItem>()
 
-    fun getClickedPhotoItem(): PhotoItem? {
-        return clickedItem
-    }
+//    fun getClickedPhotoItem(): PhotoItem? {
+//        return clickedItem
+//    }
 
     fun setClickedPhotoItem(photoItem: PhotoItem) {
-        clickedItem = photoItem
+        clickedItem.value = photoItem
     }
 
     fun setRetrievedSearchResults(photosListResponse: PhotosListResponse) {
